@@ -49,12 +49,7 @@ int main() {
     cout << "Massiv: " << endl;
     for (int i=0; i<n; ++i){
         for (int j=0; j<n; ++j){
-            if((j+i)>(n-2)){
-                cout << setw(6) << obr(a,n,i,j);
-            }
-            else{
-                cout << setw(6)<< 0;
-            }
+            cout << setw(6) << obr(a,n,i,j);
         }
         cout << endl;
     }
@@ -65,6 +60,7 @@ int main() {
             if(obr(a,n, i,j)<0){
                 summ =-1;
                 j=-10;
+                break;
             }
             else{
                 summ+=obr(a,n,i,j);
@@ -75,21 +71,25 @@ int main() {
         }
     }
 
-    int mini=0;
-    int minj=0;
-    for (int i=0; i<n; ++i){
-        for (int j=n-1; (j+i)>(n-2); --j){
+    cout << "Minimum: " << obr(a, n, 0, (n-1) )<<endl;
+    for(int i=1; i<n; i++){
+        for(int j=n-i; (j>=n-1-i) && (j<n); j--){
             if(i!=j){
-                if(obr(a, n,mini, minj)>obr(a,n,i,j)){
-                    mini = i;
-                    minj =j;
+                int k=i, l=j;
+                int mini=k, minj=l;
+                while((k<n)&&(l<n)){
+                    if (obr(a, n, mini, minj)> obr(a, n, k, l)){
+                        mini=k;
+                        minj=l;
+                    }
+                    k++;
+                    l++;
                 }
+                cout << "Minimum: " << obr(a, n, mini, minj)<<endl;
             }
+            //else не патрэбны
         }
     }
-
-    cout << "Minimum: " << obr (a, n,mini,minj) << endl;
-    cout << obr(a,n, 0, 1);
 
 
     for(int i=0; i<n; ++i){
