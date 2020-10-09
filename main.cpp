@@ -24,9 +24,11 @@ int _strCMP (char *str1, const char *str2){
 int main() {
     ifstream fin("some.txt");
     char str1[100], str2[100]; //random number of elements
-    if (fin.is_open()){
-        fin>>str1>>str2;
+    if (fin.is_open()) {
+        fin.getline(str1, 100, '\n');
+        fin.getline(str2, 100, '\n');
     }
+    cout << "_strcmp_ result for str1 and str 2 is " << _strCMP(str1, str2);
     fin.close();
-    cout<< "_strcmp_ result for str1 and str 2 is " << _strCMP (str1, str2);
     return 0;
+}
