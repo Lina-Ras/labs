@@ -1,3 +1,5 @@
+//2 варыянт!!
+
 #include <iostream>
 #include <fstream>
 
