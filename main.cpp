@@ -39,8 +39,8 @@ int main() {
     students[7] = new StudentAfter1("Ksiusha", 1, 4, 786590, 7,8,9,5);
     students[8] = new StudentAfter2("Julia", 1, 3, 784593, 5,8,9,10,4,9,10,7,8);
 
-
     std::cout << "average score for massiv: " << AverageScoreMassiv(9, students)<<'\n';
     std::cout << "average score for 4th after 1st sem: " << AverageScoreGroup(9, students, 4, 1) << '\n';
+    std::cout << *students[5];
     return 0;
 }

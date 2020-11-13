@@ -138,9 +138,35 @@ double StudentAfter2::AverageScore(){
     return (double)(sem1[0]+sem1[1]+sem1[2]+sem1[3]+sem2[0]+sem2[1]+sem2[2]+sem2[3]+sem2[4])/9;
 }
 
-std::ostream & operator<< (std::ostream &out, const Student &st){
-    out << "Name of the Student: " << st._name << ", his id - " << st._id <<" and his number - " << st._number << "\n";
-    out <<" This student is in group number "<< st._group << ", " << st._course << " course";
+
+
+void Student::print(std::ostream &out){
+    out << "Name of the Student: " << this->_name << ", his id - " << this->_id <<" and his number - " << this->_number << "\n";
+    out <<" This student is in group number "<< this->_group << ", " << this->_course << " course";
+}
+
+void StudentAfter1::print(std::ostream &out){
+    out << "Student: " << this->get_name() << '\n';
+    out << "(" << this->sem1[0] << ", "<< this->sem1[1]<< ", "<<this->sem1[2]<< ", " << this->sem1[3] << ")";
+}
+
+void StudentAfter2::print(std::ostream &out) {
+    out << "Student: " << this->get_name() << '\n';
+    out << "(sem1:" << this->sem1[0] << ", " << this->sem1[1] << ", " << this->sem1[2] << ", " << this->sem1[3] << ")\n";
+    out << "(sem2:" << this->sem2[0] << ", " << this->sem2[1] << ", " << this->sem2[2] << ", " << this->sem2[3] << ", "
+        << this->sem2[4] << ")";
+}
+
+std::ostream & operator<< (std::ostream &out, Student &st){
+    if(st.getType()==0 ){
+        st.print(out);
+    }
+    if(st.getType()==1){
+        st.print (out);
+    }
+    if(st.getType()==2){
+        st.print (out);
+    }
     return out;
 }
 

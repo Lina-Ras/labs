@@ -32,7 +32,8 @@ public:
 
     virtual double AverageScore();
 
-    friend std::ostream & operator<< (std::ostream &out, const Student &st);
+    virtual void print(std::ostream &out);
+    friend std::ostream & operator<< (std::ostream &out, Student &st);
 };
 
 
@@ -53,6 +54,7 @@ public:
 
     virtual double AverageScore();
 
+    virtual void print(std::ostream &out);
     friend std::ostream & operator<< (std::ostream &out, StudentAfter1 &st);
 };
 
@@ -74,6 +76,7 @@ public:
 
     double AverageScore();
 
+    void print(std::ostream &out);
     friend std::ostream & operator<< (std::ostream &out, StudentAfter2 &st);
 };
 #endif
