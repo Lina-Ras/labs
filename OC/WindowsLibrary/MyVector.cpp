@@ -2,13 +2,13 @@
 #include "MyVector.h"
 
 Number Vector::r() {
-	return sqrtNumber(x * x + y * y);
+	return Number::sqrtNumber(x * x + y * y);
 }
 
 Number Vector::angle() {
 	Number r = Vector::r();
 	if (r.value != 0)
-		return asinNumber(x / r);
+		return Number::asinNumber(x / r);
 	else
 		return ZERO_N;
 }
