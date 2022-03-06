@@ -1,0 +1,3 @@
+/home/linka/projectsOC/l1/labs/OC/LinuxLibrary/Number/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/linka/projectsOC/l1/labs/OC/LinuxLibrary/Number/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/linka/projectsOC/l1/labs/OC/LinuxLibrary/Number/cmake-build-debug/CMakeFiles/Number.dir
