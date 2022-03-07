@@ -1,7 +1,7 @@
 #ifndef VECTOR_VECTOR_H
 #define VECTOR_VECTOR_H
 
-#include"Number.h"
+#include "../Number/Number.h"
 
 class Vector{
 public:
