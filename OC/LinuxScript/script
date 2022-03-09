@@ -1,0 +1,16 @@
+#!/bin/bash
+
+mkdir tmp
+
+g++ -c Number/Number.cpp -o tmp/Number.o
+ar rvs tmp/Number.a tmp/Number.o
+
+g++ -c -INumber Vector/Vector.cpp -o tmp/Vector.o
+gcc -shared -o tmp/Vector.so tmp/Vector.o
+g++ -c -IVector main.cpp -o tmp/main.o
+g++ tmp/Vector.o tmp/Number.o tmp/main.o -o main
+
+chmod +x main
+./main
+
+rm -R tmp
