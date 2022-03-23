@@ -23,15 +23,15 @@ public:
     explicit BufferedChannel(int size): bsize(size) {}
 
     void Send(T value) {
+        std::unique_lock<std::mutex> lk(m);
         if(closed){
             throw std::runtime_error("Channel is closed");
         }
-        std::unique_lock<std::mutex> lk(m);
-        ch.wait(lk, [&](){return !is_full();});
+        ch.wait(lk, [&](){return !is_full() && !closed;});
         q.push(value);
         std::cout << "Value " << value << " was added " << '\n';
         lk.unlock();
-        ch.notify_all();
+        ch.notify_one();
     }
 
     std::pair<T, bool> Recv() {

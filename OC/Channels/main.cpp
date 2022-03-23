@@ -19,14 +19,19 @@ int main() {
     for(int i=0; i<14; ++i){
         th1.emplace_back(std::thread(add, i));
     }
-    for(int i=0; i<14; ++i){
+    for(int i=0; i<10; ++i){
         th1.emplace_back(std::thread(pop));
     }
+    test.Close();
+    std::cout << "delete" << '\n';
+    std::cout << test.Recv().first << test.Recv().second;
+    test.Recv();
+    test.Recv();
+    test.Recv();
+    test.Recv();
+    test.Recv();
     for(auto& t : th1){
         t.join();
     }
-    std::cout << test.Recv().first;
-    test.Close();
-
     return 0;
 }
