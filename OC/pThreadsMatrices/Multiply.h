@@ -66,21 +66,27 @@ Matrix multiply_blocks(Matrix& a, Matrix& b, int nk, int mk, int lk){
     Matrix c(a._rows, b._columns);
     auto mutex = PTHREAD_MUTEX_INITIALIZER;
     std::vector<pthread_t> th(nk*mk*mk*lk);
+    std::vector<KASTYL*> kasVector;
 
     int counter = 0;
     for(int I=0; I<c._rows; I+=n){
         for(int J=0; J<c._columns; J+=l){
             for(int K=0; K<a._columns; K+=m){
-                KASTYL kas(a,b,c,I,J,K,n,m,l,mutex);
+                KASTYL* kas = new KASTYL(a,b,c,I,J,K,n,m,l,mutex);
+                kasVector.emplace_back(kas);
                 if(pthread_create( &th[counter], nullptr, &multiply, &kas))
                 {
                     throw std::runtime_error("thread wasn't created");
                 }
+                ++counter;
             }
         }
     }
     for(auto& thread: th){
         pthread_join(thread, nullptr);
+    }
+    for (auto kas: kasVector) {
+        delete kas;
     }
     return c;
 }

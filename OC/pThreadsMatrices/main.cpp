@@ -23,7 +23,7 @@ int main() {
             auto start_2 = std::chrono::high_resolution_clock::now();
             multiply_blocks(a, b, k, k, k);
             auto stop_2 = std::chrono::high_resolution_clock::now();
-            auto delta_2 = std::chrono::duration_cast<std::chrono::microseconds>(stop_2 -start_2);
+            auto delta_2 = std::chrono::duration_cast<std::chrono::microseconds>(stop_2-start_2);
             std::cout << "k: " << k << ",\t time = " << delta_2.count() << '\n';
         }
     }

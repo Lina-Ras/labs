@@ -5,7 +5,7 @@
 #include "Multiply.h"
 
 int main() {
-    int N = 20;
+    int N = 10;
 
     Matrix a(N,N);
     a.generate_random();
