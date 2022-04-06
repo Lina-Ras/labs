@@ -62,15 +62,17 @@ Matrix multiply_blocks(Matrix& a, Matrix& b, int nk, int mk, int lk) {
     Matrix c(a._rows, b._columns);
     CONST HANDLE mutex = CreateMutex(NULL, FALSE, NULL);
     std::vector<HANDLE> th;
+    std::vector<KASTYL*> kasVector;
 
     int counter = 0;
     for (int I = 0; I < c._rows; I += n) {
         for (int J = 0; J < c._columns; J += l) {
             for (int K = 0; K < a._columns; K += m) {
-                KASTYL kas(a,b,c,I,J,K,n,m,l,mutex);
+                KASTYL* kas = new KASTYL(a,b,c,I,J,K,n,m,l,mutex);
+                kasVector.emplace_back(kas);
                 th.emplace_back(CreateThread(NULL, 0, &multiply, &kas, 0, NULL));
                 if (NULL == th[counter]) {
-                    std::cout << "Error. Failed to create thread";
+                    throw std::runtime_error("Thread wasn't created!");
                 }
                 ++counter;
             }
@@ -80,6 +82,9 @@ Matrix multiply_blocks(Matrix& a, Matrix& b, int nk, int mk, int lk) {
 
     for (int i = 0; i < counter; ++i) {
         CloseHandle(th[i]);
+    }
+    for (auto kas: kasVector) {
+        delete kas;
     }
     CloseHandle(mutex);
     return c;
