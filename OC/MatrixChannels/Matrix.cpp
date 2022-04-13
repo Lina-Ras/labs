@@ -42,7 +42,7 @@ std::istream& operator>>(std::istream& in, Matrix& matrix) {
 
 
 void Matrix::generate_random() {
-    srand(time(NULL));
+    srand(time(nullptr));
     for(auto& vec: _m){
         for(auto& el: vec){
             el = rand()%100+1;
