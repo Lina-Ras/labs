@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
     std::cout << "3 -- kill all processes in PROC_TO_KILL\n";
     std::cout << "4 -- exit\n";
     while(true){
-        std::cout << "Choose option from the menu: ";
+        std::cout << "\nChoose option from the menu: ";
         std::cin >> answ;
         switch (answ) {
             case 1:{
@@ -77,11 +77,10 @@ int main(int argc, char* argv[]) {
             }
             case 3:{
                 std::string proc_to_kill = getenv("PROC_TO_KILL");
-                std::cout << proc_to_kill;
 
                 size_t pos = 0;
                 std::string token;
-                while ((pos = proc_to_kill.find(",")) != std::string::npos) {
+                while ((pos = proc_to_kill.find(',')) != std::string::npos) {
                     KillProcessByName(proc_to_kill.substr(0, pos)+".exe");
                     proc_to_kill.erase(0, pos + 1);
                 }
